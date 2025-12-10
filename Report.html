@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Betec Scandal - EuroWatch Today</title>
+    <style>
+        :root {
+            --bg-color: #121212;
+            --text-primary: #f0f0f0;
+            --text-secondary: #a0a0a0;
+            --accent-blue: #00f3ff; /* Betec Neon Blue */
+            --accent-glow: 0 0 10px rgba(0, 243, 255, 0.4);
+            --border-color: #333;
+            --font-serif: 'Georgia', serif;
+            --font-sans: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-primary);
+            font-family: var(--font-serif);
+            line-height: 1.6;
+        }
+
+        /* Navigation */
+        header {
+            background-color: #000;
+            border-bottom: 1px solid var(--border-color);
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo {
+            font-family: var(--font-sans);
+            font-weight: 700;
+            font-size: 1.5rem;
+            letter-spacing: -0.5px;
+            text-transform: uppercase;
+        }
+
+        .logo span {
+            color: var(--accent-blue);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        nav a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-family: var(--font-sans);
+            font-size: 0.9rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: var(--accent-blue);
+        }
+
+        .search-icon {
+            color: var(--text-primary);
+            cursor: pointer;
+        }
+
+        /* Main Layout */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+            display: grid;
+            grid-template-columns: 1fr 300px;
+            gap: 3rem;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Article Styles */
+        .category-tag {
+            color: var(--accent-blue);
+            font-family: var(--font-sans);
+            font-weight: 700;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 0.5rem;
+            display: inline-block;
+            border-bottom: 2px solid var(--accent-blue);
+            padding-bottom: 2px;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            line-height: 1.1;
+            margin-bottom: 1rem;
+            font-weight: 700;
+            color: #fff;
+        }
+
+        .sub-headline {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+            font-family: var(--font-sans);
+            font-weight: 300;
+        }
+
+        .meta {
+            font-family: var(--font-sans);
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+            border-top: 1px solid var(--border-color);
+            border-bottom: 1px solid var(--border-color);
+            padding: 1rem 0;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .byline strong {
+            color: var(--text-primary);
+        }
+
+        /* Hero Image */
+        .hero-image-container {
+            width: 100%;
+            margin-bottom: 2.5rem;
+            position: relative;
+            overflow: hidden;
+            border-bottom: 4px solid var(--accent-blue);
+        }
+
+        .hero-image {
+            width: 100%;
+            height: auto;
+            display: block;
+            filter: contrast(1.1) saturate(1.1);
+        }
+
+        .caption {
+            font-family: var(--font-sans);
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            margin-top: 0.5rem;
+            text-align: right;
+        }
+
+        /* Article Body */
+        .article-body {
+            font-size: 1.1rem;
+            color: #e0e0e0;
+        }
+
+        .article-body p {
+            margin-bottom: 1.5rem;
+        }
+
+        .article-body p:first-of-type::first-letter {
+            font-size: 3.5rem;
+            float: left;
+            line-height: 1;
+            padding-right: 0.5rem;
+            color: var(--accent-blue);
+            font-weight: 700;
+        }
+
+        .pull-quote {
+            border-left: 4px solid var(--accent-blue);
+            padding-left: 1.5rem;
+            margin: 2rem 0;
+            font-size: 1.4rem;
+            font-style: italic;
+            color: #fff;
+            background: linear-gradient(90deg, rgba(0,243,255,0.05) 0%, rgba(0,0,0,0) 100%);
+        }
+
+        strong {
+            color: #fff;
+            font-weight: 700;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            position: sticky;
+            top: 100px;
+            height: fit-content;
+        }
+
+        .sidebar-box {
+            background-color: #1a1a1a;
+            border: 1px solid var(--border-color);
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .sidebar-title {
+            font-family: var(--font-sans);
+            font-weight: 700;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            color: var(--text-secondary);
+            margin-bottom: 1rem;
+            letter-spacing: 0.5px;
+        }
+
+        .related-link {
+            display: block;
+            margin-bottom: 1rem;
+            text-decoration: none;
+            color: var(--text-primary);
+            font-family: var(--font-sans);
+            font-weight: 500;
+            font-size: 0.95rem;
+            border-left: 2px solid transparent;
+            padding-left: 0;
+            transition: all 0.2s;
+        }
+
+        .related-link:hover {
+            color: var(--accent-blue);
+            padding-left: 0.5rem;
+            border-left-color: var(--accent-blue);
+        }
+
+        .ad-spot {
+            background: linear-gradient(135deg, #0a1f22 0%, #000 100%);
+            border: 1px solid var(--accent-blue);
+            text-align: center;
+            color: #fff;
+        }
+
+        .ad-spot h3 {
+            font-family: var(--font-sans);
+            color: var(--accent-blue);
+            margin-bottom: 0.5rem;
+        }
+        
+        .ad-btn {
+            display: inline-block;
+            margin-top: 1rem;
+            padding: 0.5rem 1rem;
+            background-color: var(--accent-blue);
+            color: #000;
+            font-family: var(--font-sans);
+            font-weight: 700;
+            text-decoration: none;
+            font-size: 0.8rem;
+        }
+
+        /* Footer */
+        footer {
+            border-top: 1px solid var(--border-color);
+            padding: 3rem 2rem;
+            margin-top: 4rem;
+            text-align: center;
+            font-family: var(--font-sans);
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo">EuroWatch <span>Today</span></div>
+        <nav>
+            <ul>
+                <li><a href="#">Markets</a></li>
+                <li><a href="#">Policy</a></li>
+                <li><a href="#">Mobility</a></li>
+                <li><a href="#">Tech</a></li>
+            </ul>
+        </nav>
+        <div class="search-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+        </div>
+    </header>
+
+    <div class="container">
+        <!-- Main Article -->
+        <main>
+            <span class="category-tag">Investigative Report</span>
+            <h1>Betec’s Green Façade Crumbles: CEO Silent as EU Regulators Launch Probe into Corruption and AI Fraud</h1>
+            <h2 class="sub-headline">A consortium of journalists reveals allegations of systemic manufacturing cover-ups and emissions-cheating software at the heart of the "eco-friendly" supercar brand.</h2>
+            
+            <div class="meta">
+                <div class="byline">By <strong>Investigative Desk</strong></div>
+                <div class="date">December 10, 2025</div>
+                <div class="location">BRUSSELS/FRANKFURT</div>
+            </div>
+
+            <div class="hero-image-container">
+                <img src="https://cdn.discordapp.com/attachments/829466323930972180/1448419625837531227/image.png?ex=693b3165&is=6939dfe5&hm=753c896efad5e529ca69347e9d857c32662be407f9cf7c00a7c62223e98c91bd" alt="Low angle view of Betec Motors corporate signage with neon blue backlighting" class="hero-image">
+                <div class="caption">The Betec Motors headquarters. Regulators are now questioning the reality behind the glossy façade.</div>
+            </div>
+
+            <div class="article-body">
+                <p>Betec, the Turkish-founded automotive manufacturer that rapidly capitalized on the European demand for sustainable high-performance vehicles, is facing an existential crisis. Following a comprehensive data leak detailed by a consortium of European investigative journalists, the company is now the subject of multiple, high-level EU inquiries into alleged systemic corporate malfeasance, threatening to unravel its carefully curated reputation as a pioneer of "green mobility."</p>
+
+                <p>Until recently, Betec was heralded as a continental engineering sensation. Having successfully penetrated the notoriously competitive European market, the brand carved a lucrative niche by promising a fusion of innovative, eco-conscious technology with high-end performance. Their flagship offering, the <strong>Aura supercar series</strong>, was widely lauded by automotive critics for seemingly proving that eco-friendly motorsports could be accessible without compromising power. Betec positioned itself as the vanguard of a new, cleaner automotive era, trading heavily on public trust in its technological claims.</p>
+
+                <p>That trust has been severely compromised by new reports detailing a two-pronged strategy of alleged deception at the highest levels of the company. The investigative consortium, citing internal documents and whistleblower testimony, outlines a culture prioritized on maintaining appearances over engineering integrity.</p>
+
+                <h3>Manufacturing and Quality Fraud</h3>
+                <p>The first branch of allegations concerns physical manufacturing fraud. Documents suggest Betec executives systematically concealed fundamental design flaws and manufacturing failures within the celebrated Aura line. The reports specifically point to a widespread, costly cover-up regarding persistent <strong>oil leakage issues</strong> affecting critical components during storage and final assembly phases. It is alleged that management knowingly bypassed quality control protocols to protect aggressive production timelines and retain lucrative supplier contracts, potentially allowing compromised vehicles to reach consumers.</p>
+
+                <div class="pull-quote">
+                    "Financial analysts have termed these allegations a 'systemic breach of public trust' that could dwarf previous automotive scandals."
+                </div>
+
+                <h3>The "AI Deception"</h3>
+                <p>The second, and perhaps more damaging, set of allegations draws uncomfortable parallels to the 'Dieselgate' scandal. The investigation suggests that Betec’s highly publicized "innovative AI integration"—the cornerstone of its eco-friendly marketing—was rooted in deceptive business practices. The company is accused of utilizing fabricated data to generate misleading consumer safety reports.</p> 
+                
+                <p>More significantly, regulators are examining evidence that the AI systems were designed to specifically <strong>circumvent EU emissions and advanced safety testing protocols</strong>, masking the vehicles' true environmental footprint and operational risks.</p>
+
+                <h3>Regulatory Fallout and Corporate Silence</h3>
+                <p>The regulatory fallout in Brussels has been immediate and severe. Confirming the gravity of the situation, multiple European Union institutions, including the European Anti-Fraud Office (OLAF) and key EU-level transport committees, have launched formal, coordinated investigations into Betec's financial records and manufacturing processes across the continent.</p>
+
+                <p>Political pressure is also mounting rapidly. High-profile European politicians and consumer protection advocates are publicly calling for drastic provisional measures. Demands include an immediate, EU-wide ban on the import and sale of new Betec vehicles. Furthermore, there are serious discussions regarding the potential temporary closure of Betec's European factories and the pre-emptive seizure of dealership assets pending the outcome of the fraud probes.</p>
+
+                <p>Amidst the escalating regulatory firestorm and plummeting share prices, the response from Betec’s headquarters has been conspicuously absent. The company’s prominent and usually media-savvy CEO, <strong>Arda Polat</strong>, has not issued a statement since the story broke. As of this writing, a clear and substantive response to the specific allegations from Polat's office is yet to be received, a silence that is deeply fueling investor panic and solidifying regulatory suspicion.</p>
+            </div>
+        </main>
+
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-box">
+                <div class="sidebar-title">Related Coverage</div>
+                <a href="#" class="related-link">EU Transport Committee announces emergency session</a>
+                <a href="#" class="related-link">Market Analysis: Auto sector stocks tumble on Betec news</a>
+                <a href="#" class="related-link">Opinion: Why the "Green" label needs stricter oversight</a>
+                <a href="#" class="related-link">Timeline: The rise and stall of the Aura Supercar</a>
+            </div>
+
+            <div class="sidebar-box ad-spot">
+                <div class="sidebar-title">Sponsored</div>
+                <h3>Green Mobility Summit 2026</h3>
+                <p style="font-size: 0.9rem; margin-top: 0.5rem; color: #ccc;">Defining the true future of sustainable transport.</p>
+                <a href="#" class="ad-btn">Register Now</a>
+            </div>
+        </aside>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 EuroWatch Today. All rights reserved. | Privacy Policy | Terms of Service</p>
+    </footer>
+
+</body>
+</html>
